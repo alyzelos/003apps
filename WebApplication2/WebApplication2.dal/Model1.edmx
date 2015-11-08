@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DEPANGAJATModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ANGAJATI">
+          <Key>
+            <PropertyRef Name="ID_ANGAJAT" />
+          </Key>
+          <Property Name="ID_ANGAJAT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_DEPARTAMENT" Type="int" Nullable="false" />
+          <Property Name="NUME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRENUME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="POST_OCUPAT" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GENDER" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEPARTAMENT">
+          <Key>
+            <PropertyRef Name="ID_DEP" />
+          </Key>
+          <Property Name="ID_DEP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUME_DEP" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_ANGAJATI_DEPARTAMENT">
+          <End Role="DEPARTAMENT" Type="Self.DEPARTAMENT" Multiplicity="1" />
+          <End Role="ANGAJATI" Type="Self.ANGAJATI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENT">
+              <PropertyRef Name="ID_DEP" />
+            </Principal>
+            <Dependent Role="ANGAJATI">
+              <PropertyRef Name="ID_DEPARTAMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ADAUGARE001" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NUME_DEP" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ADAUGARE002" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NUME_DEP" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ADAUGARE003" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NUME_DEP" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ADAUGARE004" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NUME_DEP" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ADAUGAREDEPARTAMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ADDANGAJATI002" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_DEPARTAMENT" Type="int" Mode="In" />
+          <Parameter Name="NUME" Type="varchar" Mode="In" />
+          <Parameter Name="PRENUME" Type="varchar" Mode="In" />
+          <Parameter Name="POST_OCUPAT" Type="varchar" Mode="In" />
+          <Parameter Name="GENDER" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="SELANGBYGENDER001" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GENDER" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SELECTAREPERSONAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DEPANGAJATModelStoreContainer">
+          <EntitySet Name="ANGAJATI" EntityType="Self.ANGAJATI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTAMENT" EntityType="Self.DEPARTAMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ANGAJATI_DEPARTAMENT" Association="Self.FK_ANGAJATI_DEPARTAMENT">
+            <End Role="DEPARTAMENT" EntitySet="DEPARTAMENT" />
+            <End Role="ANGAJATI" EntitySet="ANGAJATI" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DEPANGAJATModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ANGAJATI">
+          <Key>
+            <PropertyRef Name="ID_ANGAJAT" />
+          </Key>
+          <Property Name="ID_ANGAJAT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_DEPARTAMENT" Type="Int32" Nullable="false" />
+          <Property Name="NUME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENUME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="POST_OCUPAT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GENDER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DEPARTAMENT" Relationship="Self.FK_ANGAJATI_DEPARTAMENT" FromRole="ANGAJATI" ToRole="DEPARTAMENT" />
+        </EntityType>
+        <EntityType Name="DEPARTAMENT">
+          <Key>
+            <PropertyRef Name="ID_DEP" />
+          </Key>
+          <Property Name="ID_DEP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUME_DEP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ANGAJATIs" Relationship="Self.FK_ANGAJATI_DEPARTAMENT" FromRole="DEPARTAMENT" ToRole="ANGAJATI" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_ANGAJATI_DEPARTAMENT">
+          <End Role="DEPARTAMENT" Type="Self.DEPARTAMENT" Multiplicity="1" />
+          <End Role="ANGAJATI" Type="Self.ANGAJATI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENT">
+              <PropertyRef Name="ID_DEP" />
+            </Principal>
+            <Dependent Role="ANGAJATI">
+              <PropertyRef Name="ID_DEPARTAMENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DEPARTAMENTANGAJATI" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ANGAJATIs" EntityType="Self.ANGAJATI" />
+          <EntitySet Name="DEPARTAMENTs" EntityType="Self.DEPARTAMENT" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_ANGAJATI_DEPARTAMENT" Association="Self.FK_ANGAJATI_DEPARTAMENT">
+            <End Role="DEPARTAMENT" EntitySet="DEPARTAMENTs" />
+            <End Role="ANGAJATI" EntitySet="ANGAJATIs" />
+          </AssociationSet>
+          <FunctionImport Name="ADAUGARE001" ReturnType="Collection(DEPANGAJATModel.ADAUGARE001_Result)">
+            <Parameter Name="NUME_DEP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ADAUGARE002" ReturnType="Collection(DEPANGAJATModel.ADAUGARE002_Result)">
+            <Parameter Name="NUME_DEP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ADAUGARE003" ReturnType="Collection(DEPANGAJATModel.ADAUGARE003_Result)">
+            <Parameter Name="NUME_DEP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ADAUGARE004" ReturnType="Collection(DEPANGAJATModel.ADAUGARE004_Result)">
+            <Parameter Name="NUME_DEP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ADAUGAREDEPARTAMENT" ReturnType="Collection(DEPANGAJATModel.ADAUGAREDEPARTAMENT_Result)" />
+          <FunctionImport Name="ADDANGAJATI002" ReturnType="Collection(DEPANGAJATModel.ADDANGAJATI002_Result)">
+            <Parameter Name="ID_DEPARTAMENT" Mode="In" Type="Int32" />
+            <Parameter Name="NUME" Mode="In" Type="String" />
+            <Parameter Name="PRENUME" Mode="In" Type="String" />
+            <Parameter Name="POST_OCUPAT" Mode="In" Type="String" />
+            <Parameter Name="GENDER" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SELANGBYGENDER001" ReturnType="Collection(DEPANGAJATModel.SELANGBYGENDER001_Result)">
+            <Parameter Name="GENDER" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SELECTAREPERSONAL" ReturnType="Collection(DEPANGAJATModel.SELECTAREPERSONAL_Result)" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DEPANGAJATModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DEPANGAJATModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="ADAUGARE001_Result">
+          <Property Type="Int32" Name="ID_DEP" Nullable="false" />
+          <Property Type="String" Name="NUME_DEP" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ADAUGARE002_Result">
+          <Property Type="Int32" Name="ID_DEP" Nullable="false" />
+          <Property Type="String" Name="NUME_DEP" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ADAUGARE003_Result">
+          <Property Type="Int32" Name="ID_DEP" Nullable="false" />
+          <Property Type="String" Name="NUME_DEP" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ADAUGARE004_Result">
+          <Property Type="Int32" Name="ID_DEP" Nullable="false" />
+          <Property Type="String" Name="NUME_DEP" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ADAUGAREDEPARTAMENT_Result">
+          <Property Type="Int32" Name="ID_DEP" Nullable="false" />
+          <Property Type="String" Name="NUME_DEP" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ADDANGAJATI002_Result">
+          <Property Type="Int32" Name="ID_ANGAJAT" Nullable="false" />
+          <Property Type="Int32" Name="ID_DEPARTAMENT" Nullable="false" />
+          <Property Type="String" Name="NUME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PRENUME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="POST_OCUPAT" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="GENDER" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SELANGBYGENDER001_Result">
+          <Property Type="Int32" Name="ID_DEP" Nullable="false" />
+          <Property Type="String" Name="NUME_DEP" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ID_ANGAJAT" Nullable="false" />
+          <Property Type="Int32" Name="ID_DEPARTAMENT" Nullable="false" />
+          <Property Type="String" Name="NUME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PRENUME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="POST_OCUPAT" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="GENDER" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SELECTAREPERSONAL_Result">
+          <Property Type="String" Name="NUME_DEP" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NUME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PRENUME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="POST_OCUPAT" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="GENDER" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DEPANGAJATModelStoreContainer" CdmEntityContainer="DEPARTAMENTANGAJATI">
+          <EntitySetMapping Name="ANGAJATIs">
+            <EntityTypeMapping TypeName="DEPANGAJATModel.ANGAJATI">
+              <MappingFragment StoreEntitySet="ANGAJATI">
+                <ScalarProperty Name="ID_ANGAJAT" ColumnName="ID_ANGAJAT" />
+                <ScalarProperty Name="ID_DEPARTAMENT" ColumnName="ID_DEPARTAMENT" />
+                <ScalarProperty Name="NUME" ColumnName="NUME" />
+                <ScalarProperty Name="PRENUME" ColumnName="PRENUME" />
+                <ScalarProperty Name="POST_OCUPAT" ColumnName="POST_OCUPAT" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTAMENTs">
+            <EntityTypeMapping TypeName="DEPANGAJATModel.DEPARTAMENT">
+              <MappingFragment StoreEntitySet="DEPARTAMENT">
+                <ScalarProperty Name="ID_DEP" ColumnName="ID_DEP" />
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DEPANGAJATModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ADAUGARE001" FunctionName="DEPANGAJATModel.Store.ADAUGARE001">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel.ADAUGARE001_Result">
+                <ScalarProperty Name="ID_DEP" ColumnName="ID_DEP" />
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADAUGARE002" FunctionName="DEPANGAJATModel.Store.ADAUGARE002">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel.ADAUGARE002_Result">
+                <ScalarProperty Name="ID_DEP" ColumnName="ID_DEP" />
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADAUGARE003" FunctionName="DEPANGAJATModel.Store.ADAUGARE003">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel.ADAUGARE003_Result">
+                <ScalarProperty Name="ID_DEP" ColumnName="ID_DEP" />
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADAUGARE004" FunctionName="DEPANGAJATModel.Store.ADAUGARE004">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel.ADAUGARE004_Result">
+                <ScalarProperty Name="ID_DEP" ColumnName="ID_DEP" />
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADAUGAREDEPARTAMENT" FunctionName="DEPANGAJATModel.Store.ADAUGAREDEPARTAMENT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel.ADAUGAREDEPARTAMENT_Result">
+                <ScalarProperty Name="ID_DEP" ColumnName="ID_DEP" />
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADDANGAJATI002" FunctionName="DEPANGAJATModel.Store.ADDANGAJATI002">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel.ADDANGAJATI002_Result">
+                <ScalarProperty Name="ID_ANGAJAT" ColumnName="ID_ANGAJAT" />
+                <ScalarProperty Name="ID_DEPARTAMENT" ColumnName="ID_DEPARTAMENT" />
+                <ScalarProperty Name="NUME" ColumnName="NUME" />
+                <ScalarProperty Name="PRENUME" ColumnName="PRENUME" />
+                <ScalarProperty Name="POST_OCUPAT" ColumnName="POST_OCUPAT" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SELANGBYGENDER001" FunctionName="DEPANGAJATModel.Store.SELANGBYGENDER001">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel.SELANGBYGENDER001_Result">
+                <ScalarProperty Name="ID_DEP" ColumnName="ID_DEP" />
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+                <ScalarProperty Name="ID_ANGAJAT" ColumnName="ID_ANGAJAT" />
+                <ScalarProperty Name="ID_DEPARTAMENT" ColumnName="ID_DEPARTAMENT" />
+                <ScalarProperty Name="NUME" ColumnName="NUME" />
+                <ScalarProperty Name="PRENUME" ColumnName="PRENUME" />
+                <ScalarProperty Name="POST_OCUPAT" ColumnName="POST_OCUPAT" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SELECTAREPERSONAL" FunctionName="DEPANGAJATModel.Store.SELECTAREPERSONAL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel.SELECTAREPERSONAL_Result">
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+                <ScalarProperty Name="NUME" ColumnName="NUME" />
+                <ScalarProperty Name="PRENUME" ColumnName="PRENUME" />
+                <ScalarProperty Name="POST_OCUPAT" ColumnName="POST_OCUPAT" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DEPANGAJATModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DEPANGAJATModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DEPANGAJATModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DEPANGAJATModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DEPANGAJATModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DEPANGAJATModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DEPANGAJATModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
