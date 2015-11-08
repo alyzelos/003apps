@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DEPANGAJATModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="ADAUGARE004" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NUME_DEP" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ADAUGAREDEPARTAMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SELECTAREPERSONAL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DEPANGAJATModel1StoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DEPANGAJATModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DEPARTAMENTDB" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="ADAUGARE004" ReturnType="Collection(DEPANGAJATModel1.ADAUGARE004_Result)">
+            <Parameter Name="NUME_DEP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ADAUGAREDEPARTAMENT" ReturnType="Collection(DEPANGAJATModel1.ADAUGAREDEPARTAMENT_Result)" />
+          <FunctionImport Name="SELECTAREPERSONAL" ReturnType="Collection(DEPANGAJATModel1.SELECTAREPERSONAL_Result)" />
+        </EntityContainer>
+        <ComplexType Name="ADAUGARE004_Result">
+          <Property Type="Int32" Name="ID_DEP" Nullable="false" />
+          <Property Type="String" Name="NUME_DEP" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="ADAUGAREDEPARTAMENT_Result">
+          <Property Type="Int32" Name="ID_DEP" Nullable="false" />
+          <Property Type="String" Name="NUME_DEP" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SELECTAREPERSONAL_Result">
+          <Property Type="String" Name="NUME_DEP" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NUME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="PRENUME" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="POST_OCUPAT" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="GENDER" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DEPANGAJATModel1StoreContainer" CdmEntityContainer="DEPARTAMENTDB" >
+          <FunctionImportMapping FunctionImportName="ADAUGARE004" FunctionName="DEPANGAJATModel1.Store.ADAUGARE004">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel1.ADAUGARE004_Result">
+                <ScalarProperty Name="ID_DEP" ColumnName="ID_DEP" />
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ADAUGAREDEPARTAMENT" FunctionName="DEPANGAJATModel1.Store.ADAUGAREDEPARTAMENT">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel1.ADAUGAREDEPARTAMENT_Result">
+                <ScalarProperty Name="ID_DEP" ColumnName="ID_DEP" />
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SELECTAREPERSONAL" FunctionName="DEPANGAJATModel1.Store.SELECTAREPERSONAL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DEPANGAJATModel1.SELECTAREPERSONAL_Result">
+                <ScalarProperty Name="NUME_DEP" ColumnName="NUME_DEP" />
+                <ScalarProperty Name="NUME" ColumnName="NUME" />
+                <ScalarProperty Name="PRENUME" ColumnName="PRENUME" />
+                <ScalarProperty Name="POST_OCUPAT" ColumnName="POST_OCUPAT" />
+                <ScalarProperty Name="GENDER" ColumnName="GENDER" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

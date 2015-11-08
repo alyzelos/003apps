@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fe5d0ef3a2b8488182af4bc602e42931" Name="Diagram1">
+        <EntityTypeShape EntityType="DEPANGAJATModel.ANGAJATI" Width="1.5" PointX="4.875" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEPANGAJATModel.DEPARTAMENT" Width="1.5" PointX="1.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEPANGAJATModel.sysdiagram" Width="1.5" PointX="3.625" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="DEPANGAJATModel.FK_ANGAJATI_DEPARTAMENT" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
